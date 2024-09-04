@@ -49,3 +49,19 @@
 .product-item .inner-title {
   font-size: 20px;
 }
+
+.product-item .inner-content .inner-price-new {
+  color: green;
+}
+
+.product-item .inner-content .inner-price-old {
+  color: red;
+  text-decoration: line-through;
+}
+
+.product-item .inner-content .inner-discount {
+  display: inline-block;
+  padding: 4px;
+  background: red;
+  color: #fff;
+}

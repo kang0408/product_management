@@ -1,7 +1,11 @@
 const express = require("express"); // import express
 require("dotenv").config();
 
+const database = require("./config/database");
+
 const route = require("./routes/client/index.route");
+
+database.connect();
 
 const app = express(); // gọi hàm
 const port = process.env.PORT; // cổng

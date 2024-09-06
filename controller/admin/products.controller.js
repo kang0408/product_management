@@ -35,11 +35,21 @@ module.exports.products = async (req, res) => {
     filterButtons[idxButton].class = "active";
   }
 
+  let keyword = "";
+
+  if (req.query.keyword) {
+    keyword = req.query.keyword;
+
+    const rgx = new RegExp(keyword, "i");
+    find.title = rgx;
+  }
+
   const products = await Product.find(find);
 
   res.render("admin/pages/products/index", {
     pageTitle: "Trang sản phẩm",
     products: products,
     filterButtons: filterButtons,
+    keyword: keyword,
   });
 };

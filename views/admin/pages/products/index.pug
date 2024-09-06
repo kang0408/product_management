@@ -1,0 +1,30 @@
+extends ../../layouts/default.pug
+
+block main 
+    h1 Danh sách sản phẩm
+
+    table.table.table-hover.table-sm 
+        thead
+            tr
+                th STT
+                th Hình ảnh
+                th Tiêu đề
+                th Gía
+                th Trạng thái
+                th Hành động
+        tbody 
+            td 1
+            td 
+                img(
+                    src="https://cdn.dummyjson.com/products/images/beauty/Red%20Lipstick/thumbnail.png"
+                    alt="Sản phẩm 1"
+                    width="102px"
+                    height="auto"
+                )
+            td Sản phẩm 1
+            td 100$
+            td 
+                a(href="a" class="badge text-bg-success") Hoạt động
+            td 
+                button(class="btn btn-warning btn-sm mx-2") Sửa
+                button(class="btn btn-danger btn-sm") Xóa

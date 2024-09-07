@@ -1,39 +1,15 @@
 const Product = require("../../models/product.model");
+const filterButtonsHelper = require("../../helpers/filterButtons");
 
 // [GET] admin/products
 module.exports.products = async (req, res) => {
-  const filterButtons = [
-    {
-      name: "Tất cả",
-      status: "",
-      class: "",
-    },
-    {
-      name: "Hoạt động",
-      status: "active",
-      class: "",
-    },
-    {
-      name: "Dừng hoạt động",
-      status: "inactive",
-      class: "",
-    },
-  ];
+  const filterButtons = filterButtonsHelper(req.query);
 
   const find = {
     deleted: false,
   };
 
-  if (req.query.status) {
-    find.status = req.query.status;
-    const idxButton = filterButtons.findIndex(
-      (btn) => btn.status == req.query.status
-    );
-    filterButtons[idxButton].class = "active";
-  } else {
-    const idxButton = filterButtons.findIndex((btn) => btn.status == "");
-    filterButtons[idxButton].class = "active";
-  }
+  if (req.query.status) find.status = req.query.status;
 
   let keyword = "";
 

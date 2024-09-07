@@ -32,3 +32,19 @@ if (formSearch) {
   });
 }
 // End Form Search
+
+// Pagination
+const buttonsPagination = document.querySelectorAll("[btn-pagination]");
+if (buttonsPagination) {
+  const url = new URL(window.location.href);
+  buttonsPagination.forEach((button) => {
+    button.addEventListener("click", () => {
+      const page = button.getAttribute("btn-pagination");
+
+      url.searchParams.set("page", page);
+
+      window.location.href = url;
+    });
+  });
+}
+// End Pagination

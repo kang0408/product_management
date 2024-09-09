@@ -1,6 +1,6 @@
 const express = require("express"); // import express
+const methodOverride = require("method-override");
 require("dotenv").config();
-
 const database = require("./config/database");
 
 const systemConfig = require("./config/system");
@@ -12,6 +12,8 @@ database.connect();
 
 const app = express(); // gọi hàm
 const port = process.env.PORT; // cổng
+
+app.use(methodOverride("_method"));
 
 app.set("views", "./views");
 app.set("view engine", "pug");

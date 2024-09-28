@@ -2,6 +2,7 @@ const express = require("express"); // import express
 const methodOverride = require("method-override");
 require("dotenv").config();
 const database = require("./config/database");
+const bodyParser = require("body-parser");
 
 const systemConfig = require("./config/system");
 
@@ -14,6 +15,9 @@ const app = express(); // gọi hàm
 const port = process.env.PORT; // cổng
 
 app.use(methodOverride("_method"));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set("views", "./views");
 app.set("view engine", "pug");

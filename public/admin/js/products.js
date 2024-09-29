@@ -74,3 +74,23 @@ if (changeMultiForm) {
     }
   });
 }
+
+// Delete product form
+const deleteButton = document.querySelectorAll("[btn-delete]");
+if (deleteButton.length > 0) {
+  deleteButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      const isConform = confirm("Xac nhan xoa khong !???");
+
+      if (isConform) {
+        const id = button.getAttribute("data-id");
+        const deleteForm = document.querySelector("#form-delete");
+        const deletePath = deleteForm.getAttribute("path");
+
+        deleteForm.action = `${deletePath}/${id}?_method=DELETE`;
+
+        deleteForm.submit();
+      }
+    });
+  });
+}

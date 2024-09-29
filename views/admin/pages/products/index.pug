@@ -80,7 +80,7 @@ block main
                                     ) Không hoạt động
                             td 
                                 button(class="btn btn-warning btn-sm mx-2") Sửa
-                                button(class="btn btn-danger btn-sm") Xóa
+                                button(class="btn btn-danger btn-sm" btn-delete data-id=item.id ) Xóa
 
     +pagination(pagination) 
     form(
@@ -88,6 +88,12 @@ block main
         method="POST"
         id="form-change-status"
         path=`${prefixAdmin}/products/change-status`
+    ) 
+    form(
+        action="" 
+        method="POST"
+        id="form-delete"
+        path=`${prefixAdmin}/products/delete`
     ) 
 
     script(src="js/products.js") 

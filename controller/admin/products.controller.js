@@ -32,6 +32,7 @@ module.exports.products = async (req, res) => {
   // End Pagination
 
   const products = await Product.find(find)
+    .sort({ position: "desc" })
     .limit(objectPagination.limitedPage)
     .skip(objectPagination.skipPage);
 
@@ -71,6 +72,21 @@ module.exports.changeMulti = async (req, res) => {
         }
       );
       break;
+    case "update-position":
+      for (const item of ids) {
+        let [id, pos] = item.split("-");
+        pos = parseInt(pos);
+
+        await Product.updateMany(
+          {
+            _id: { $in: id },
+          },
+          {
+            position: pos,
+          }
+        );
+      }
+      break;
     default:
       break;
   }
@@ -86,6 +102,23 @@ module.exports.deleteProduct = async (req, res) => {
   await Product.updateOne(
     { _id: id },
     { deleted: true, deleledAt: new Date() }
+  );
+
+  res.redirect("back");
+};
+
+// [DELTE] admin/products/delete-multi
+module.exports.deleteMultiProduct = async (req, res) => {
+  const ids = req.body.ids.split(", ");
+
+  await Product.updateMany(
+    {
+      _id: { $in: ids },
+    },
+    {
+      deleted: true,
+      deleledAt: new Date(),
+    }
   );
 
   res.redirect("back");

@@ -61,13 +61,24 @@ if (changeMultiForm) {
   changeMultiForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const inputsChecked = document.querySelectorAll("input[name='id']:checked");
+    const typeChange = e.target.elements.type.value;
 
     if (inputsChecked.length == 0) alert("Chon san pham de!!!");
     else {
       let ids = [];
       const inputIds = changeMultiForm.querySelector("input[name='ids']");
 
-      inputsChecked.forEach((input) => ids.push(input.value));
+      inputsChecked.forEach((input) => {
+        if (typeChange == "update-position") {
+          const position = input
+            .closest("tr")
+            .querySelector("input[name='position']");
+
+          ids.push(`${input.value}-${position.value}`);
+        } else {
+          ids.push(input.value);
+        }
+      });
       inputIds.value = ids.join(", ");
 
       changeMultiForm.submit();
@@ -92,5 +103,29 @@ if (deleteButton.length > 0) {
         deleteForm.submit();
       }
     });
+  });
+}
+
+// Delete multi product form
+const deleteMultiForm = document.querySelector("#form-delete-multi");
+if (deleteMultiForm) {
+  deleteMultiForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const inputsChecked = document.querySelectorAll("input[name='id']:checked");
+
+    if (inputsChecked.length == 0) alert("Chon san pham de!!!");
+    else {
+      const isConform = confirm("Xac nhan xoa hang loat!?");
+
+      if (isConform) {
+        const ids = [];
+        const inputIds = deleteMultiForm.querySelector("input[name='ids']");
+
+        inputsChecked.forEach((input) => ids.push(input.value));
+        inputIds.value = ids.join(", ");
+
+        deleteMultiForm.submit();
+      }
+    }
   });
 }

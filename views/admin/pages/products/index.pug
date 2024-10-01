@@ -21,14 +21,14 @@ block main
             form(
                 action=`${prefixAdmin}/products/change-multi?_method=PATCH`
                 method="POST"
-                path=`${prefixAdmin}/products/change-multi?_method=PATCH`
                 form-change-multi
             ) 
                 .d-flex.align-items-start 
                     .form-group 
                         select(name="type" class="form-control")
                             option(value="active") Hoạt động
-                            option(value="inactive") Đang hoạt động
+                            option(value="inactive") Không hoạt động
+                            option(value="update-position") Thay đổi vị trí
                     .form-group 
                         input(
                             type="text"
@@ -37,6 +37,20 @@ block main
                             class="form-control"
                         )
                     button(type="submit" class="btn btn-primary") Áp dụng
+            form(
+                action=`${prefixAdmin}/products/delete-multi?_method=DELETE` 
+                method="POST"
+                id="form-delete-multi"
+            ) 
+                .d-flex.align-items-start 
+                    .form-group.d-none 
+                        input(
+                            type="text"
+                            name="ids"
+                            value=""
+                            class="form-control"
+                        )
+                    button(type="submit" class="btn btn-danger btn-sm" btn-delete-multi) Xóa
             table(class="table table-hover table-sm" checkbox-multi)
                 thead
                     tr
@@ -63,6 +77,14 @@ block main
                                 )
                             td #{item.title}
                             td #{item.price}$
+                            td 
+                                input(
+                                    type="number"
+                                    value=item.position
+                                    style="width: 60px"
+                                    min="1"
+                                    name="position"
+                                )
                             td 
                                 if (item.status === "active")
                                     p(

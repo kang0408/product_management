@@ -1,5 +1,9 @@
 const express = require("express");
+const multer = require("multer");
+
 const router = express.Router();
+const storageMulter = require("../../helpers/storageMulter");
+const upload = multer({ storage: storageMulter() });
 
 const controller = require("../../controller/admin/products.controller");
 
@@ -15,6 +19,10 @@ router.delete("/delete-multi", controller.deleteMultiProduct);
 
 router.get("/create", controller.createProduct);
 
-router.post("/create", controller.createProductPost);
+router.post(
+  "/create",
+  upload.single("thumbnail"),
+  controller.createProductPost
+);
 
 module.exports = router;

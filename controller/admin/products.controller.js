@@ -1,3 +1,5 @@
+const systemConfig = require("../../config/system");
+
 const Product = require("../../models/product.model");
 const filterButtonsHelper = require("../../helpers/filterButtons");
 const searchHepler = require("../../helpers/search");
@@ -122,4 +124,31 @@ module.exports.deleteMultiProduct = async (req, res) => {
   );
 
   res.redirect("back");
+};
+
+// [GET] admin/products/create
+module.exports.createProduct = async (req, res) => {
+  res.render("admin/pages/products/create", {
+    pageTitle: "Thêm mới sản phẩm",
+  });
+};
+
+// [POST] admin/products/create
+module.exports.createProductPost = async (req, res) => {
+  req.body.price = parseInt(req.body.price);
+  req.body.discountPercentage = parseInt(req.body.discountPercentage);
+  req.body.stock = parseInt(req.body.stock);
+
+  if (req.body.position == "") {
+    const productCount = await Product.countDocuments({});
+    console.log(productCount);
+    req.body.position = productCount + 1;
+  } else {
+    req.body.posiiton = parseInt(req.body.posiiton);
+  }
+
+  const newProduct = new Product(req.body);
+  await newProduct.save();
+
+  res.redirect(`${systemConfig.prefixAdmin}/products`);
 };

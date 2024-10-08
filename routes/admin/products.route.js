@@ -13,4 +13,8 @@ router.delete("/delete/:id", controller.deleteProduct);
 
 router.delete("/delete-multi", controller.deleteMultiProduct);
 
+router.get("/create", controller.createProduct);
+
+router.post("/create", controller.createProductPost);
+
 module.exports = router;

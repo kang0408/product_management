@@ -19,9 +19,10 @@ block main
         div(class="form-group")
             lable(for="stock") Số lượng
             input(type="number" class="form-control" id="stock" name="stock" value="0" min="0")
-        div(class="form-group")
+        div(class="form-group" img-preview)
             lable(for="thumbnail") Ảnh
-            input(type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*")
+            input(type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*" img-preview-input)
+        img(src="" class="thumbnail-preview" img-preview-output)
         div(class="form-group")
             lable(for="position") Vị trí
             input(type="text" class="form-control" placeholder="Tự động tăng dần" id="position" name="position" min="1")

@@ -48,3 +48,19 @@ if (buttonsPagination) {
   });
 }
 // End Pagination
+
+// Image preview
+const imgPreview = document.querySelector("[img-preview]");
+if (imgPreview) {
+  const imgPreviewInput = document.querySelector("[img-preview-input]");
+  const imgPreviewOutput = document.querySelector("[img-preview-output]");
+
+  imgPreviewInput.addEventListener("change", (e) => {
+    console.log(e);
+    const file = e.target.files[0];
+    if (file) {
+      imgPreviewOutput.src = URL.createObjectURL(file);
+    }
+  });
+}
+// End image preview

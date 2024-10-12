@@ -61,6 +61,7 @@ module.exports.changeStatus = async (req, res) => {
 module.exports.changeMulti = async (req, res) => {
   const type = req.body.type;
   const ids = req.body.ids.split(", ");
+  console.log(ids);
 
   switch (type) {
     case "active":
@@ -189,4 +190,20 @@ module.exports.editProduct = async (req, res) => {
   res.send(req.body);
 
   // res.redirect(`${systemConfig.prefixAdmin}/products`);
+};
+
+// [GET] admin/products/detail/:id
+module.exports.detailProduct = async (req, res) => {
+  const id = req.params.id;
+  const find = {
+    _id: id,
+    deleted: false,
+  };
+
+  const product = await Product.findOne(find);
+
+  res.render("admin/pages/products/detail", {
+    pageTitle: "Chi tiết sản phẩm",
+    product: product,
+  });
 };

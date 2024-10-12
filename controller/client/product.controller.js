@@ -22,3 +22,19 @@ module.exports.index = async (req, res) => {
     products: newProducts,
   });
 };
+
+// [GET] /products/detail/:id
+module.exports.detailProduct = async (req, res) => {
+  const id = req.params.id;
+  const find = {
+    _id: id,
+    deleted: false,
+  };
+
+  const product = await Product.findOne(find);
+
+  res.render("client/pages/products/detail", {
+    pageTitle: product.title,
+    product: product,
+  });
+};

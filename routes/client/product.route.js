@@ -5,4 +5,6 @@ const controller = require("../../controller/client/product.controller");
 
 router.get("/", controller.index);
 
+router.get("/detail/:id", controller.detailProduct);
+
 module.exports = router;

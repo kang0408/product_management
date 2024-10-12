@@ -65,3 +65,15 @@
   background: red;
   color: #fff;
 }
+
+.thumbnail-preview {
+  width: 250px;
+  height: auto;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: 6px;
+}
+
+.thumbnail-preview[src=""] {
+  display: none;
+}

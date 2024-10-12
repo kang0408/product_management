@@ -29,4 +29,6 @@ router.get("/edit/:id", controller.edit);
 
 router.post("/edit", controller.editProduct);
 
+router.get("/detail/:id", controller.detailProduct);
+
 module.exports = router;

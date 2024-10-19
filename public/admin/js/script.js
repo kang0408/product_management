@@ -56,7 +56,6 @@ if (imgPreview) {
   const imgPreviewOutput = document.querySelector("[img-preview-output]");
 
   imgPreviewInput.addEventListener("change", (e) => {
-    console.log(e);
     const file = e.target.files[0];
     if (file) {
       imgPreviewOutput.src = URL.createObjectURL(file);

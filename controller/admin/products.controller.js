@@ -156,41 +156,41 @@ module.exports.createProductPost = async (req, res) => {
 };
 
 // [GET] admin/products/edit/:id
-module.exports.edit = async (req, res) => {
-  try {
-    const find = {
-      deleted: false,
-      _id: req.params.id,
-    };
+// module.exports.edit = async (req, res) => {
+//   try {
+//     const find = {
+//       deleted: false,
+//       _id: req.params.id,
+//     };
 
-    const product = await Product.findOne(find);
+//     const product = await Product.findOne(find);
 
-    console.log(product);
+//     console.log(product);
 
-    res.render("admin/pages/products/edit", {
-      pageTitle: "Sửa sản phẩm",
-      product: product,
-    });
-  } catch (error) {
-    res.redirect(`${systemConfig.prefixAdmin}/products`);
-  }
-};
+//     res.render("admin/pages/products/edit", {
+//       pageTitle: "Sửa sản phẩm",
+//       product: product,
+//     });
+//   } catch (error) {
+//     res.redirect(`${systemConfig.prefixAdmin}/products`);
+//   }
+// };
 
 // [PATCH] admin/products/edit/:id
-module.exports.editProduct = async (req, res) => {
-  const id = req.params.id;
+// module.exports.editProduct = async (req, res) => {
+//   const id = req.params.id;
 
-  req.body.price = parseInt(req.body.price);
-  req.body.discountPercentage = parseInt(req.body.discountPercentage);
-  req.body.stock = parseInt(req.body.stock);
-  req.body.posiiton = parseInt(req.body.posiiton);
+//   req.body.price = parseInt(req.body.price);
+//   req.body.discountPercentage = parseInt(req.body.discountPercentage);
+//   req.body.stock = parseInt(req.body.stock);
+//   req.body.posiiton = parseInt(req.body.posiiton);
 
-  if (req.file) req.body.thumbnail = `/uploads/${req.file.filename}`;
+//   if (req.file) req.body.thumbnail = `/uploads/${req.file.filename}`;
 
-  res.send(req.body);
+//   res.send(req.body);
 
-  // res.redirect(`${systemConfig.prefixAdmin}/products`);
-};
+//   // res.redirect(`${systemConfig.prefixAdmin}/products`);
+// };
 
 // [GET] admin/products/detail/:id
 module.exports.detailProduct = async (req, res) => {

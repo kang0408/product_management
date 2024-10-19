@@ -25,9 +25,9 @@ router.post(
   controller.createProductPost
 );
 
-router.get("/edit/:id", controller.edit);
+// router.get("/edit/:id", controller.edit);
 
-router.post("/edit", controller.editProduct);
+// router.post("/edit", controller.editProduct);
 
 router.get("/detail/:id", controller.detailProduct);
 

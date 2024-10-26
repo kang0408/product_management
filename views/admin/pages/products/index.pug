@@ -2,6 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/filter-status.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
+include ../../mixins/sort.pug
 
 block main 
     h1 Danh sách sản phẩm
@@ -14,6 +15,11 @@ block main
                     +filter-status(filterButtons)
                 .col-6
                     +search(keyword)
+    .card.mb-3
+        .card-body 
+            .row 
+                .col-4 
+                    +sort()
             
     .card.mb-3 
         .card-header Danh sách sản phẩm

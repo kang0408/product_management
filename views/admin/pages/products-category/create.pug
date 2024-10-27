@@ -1,0 +1,39 @@
+extends ../../layouts/default.pug
+
+block main 
+    h1(class="mb-4") Thêm mới danh mục sản phẩm 
+
+    form(action=`${prefixAdmin}/products-category/create` id="form-create-product" method="POST" enctype="multipart/form-data")
+        div(class="form-group")
+            lable(for="title") Tiêu đề
+            input(type="text" class="form-control" id="title" name="title" required)
+        div(class="form-group")
+            lable(for="parent_id") Danh mục cha
+            input(type="text" class="form-control" id="parent_id" name="parent_id" )
+        div(class="form-group")
+            lable(for="desc") Mô tả
+            textarea(type="text" class="form-control textarea-mce" id="desc" name="description" rows="5")
+        div(class="form-group" img-preview)
+            lable(for="thumbnail") Ảnh
+            input(type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*" img-preview-input)
+        img(src="" class="thumbnail-preview" img-preview-output)
+        div(class="form-group")
+            lable(for="position") Vị trí
+            input(type="text" class="form-control" placeholder="Tự động tăng dần" id="position" name="position" min="1")
+        <div class="form-group form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="status" id="statusActive" value="active" checked>
+            <label class="form-check-label" for="statusActive">
+                Default Hoạt động
+            </label>
+        </div>
+        <div class="form-group form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="status" id="statusInactive" value="inactive">
+            <label class="form-check-label" for="statusInactive">
+                Default Không hoạt động
+            </label>
+        </div>
+        div(class="form-group")
+            button(type="submit" class="btn btn-primary") Tạo mới
+
+
+    script(src="/admin/js/products.js")

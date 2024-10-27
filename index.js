@@ -1,5 +1,6 @@
 const express = require("express"); // import express
 const methodOverride = require("method-override");
+const path = require("path");
 require("dotenv").config();
 const database = require("./config/database");
 const bodyParser = require("body-parser");
@@ -18,6 +19,11 @@ app.use(methodOverride("_method"));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce"))
+);
 
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
